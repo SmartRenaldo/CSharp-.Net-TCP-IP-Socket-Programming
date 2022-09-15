@@ -31,13 +31,29 @@ namespace _01_SocketServersStarter
 
             byte[] buffer = new byte[128];
 
-            int numOfReceivedBytes = client.Receive(buffer);
+            int numOfReceivedBytes = 0;
 
-            Console.WriteLine("Number of received bytes: " + numOfReceivedBytes);
-            
-            Console.WriteLine("Data: " + Encoding.ASCII.GetString(buffer, 0, numOfReceivedBytes));
+            while (true)
+            {
+                numOfReceivedBytes = client.Receive(buffer);
 
-            Console.ReadKey();
+                Console.WriteLine("Number of received bytes: " + numOfReceivedBytes);
+
+                string receivedText = Encoding.ASCII.GetString(buffer, 0, numOfReceivedBytes);
+
+                Console.WriteLine("Data: " + receivedText);
+
+                client.Send(buffer);
+
+                if (receivedText == "e")
+                {
+                    break;
+                }
+
+                Array.Clear(buffer, 0, buffer.Length);
+
+                numOfReceivedBytes = 0;
+            }
         }
     }
 }
