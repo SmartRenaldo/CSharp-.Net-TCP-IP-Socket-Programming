@@ -22,7 +22,22 @@ namespace _01_SocketServersStarter
 
             socket.Listen(5);
 
-            socket.Accept();
+            Console.WriteLine("About to accept a connection...");
+
+            Socket client = socket.Accept();
+
+            Console.WriteLine("Client connected... " + client.ToString()
+                + " - IP End Point: " + client.RemoteEndPoint.ToString());
+
+            byte[] buffer = new byte[128];
+
+            int numOfReceivedBytes = client.Receive(buffer);
+
+            Console.WriteLine("Number of received bytes: " + numOfReceivedBytes);
+            
+            Console.WriteLine("Data: " + Encoding.ASCII.GetString(buffer, 0, numOfReceivedBytes));
+
+            Console.ReadKey();
         }
     }
 }

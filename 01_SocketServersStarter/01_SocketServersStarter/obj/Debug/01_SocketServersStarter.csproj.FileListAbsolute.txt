@@ -1,0 +1,8 @@
+C:\Projects\C# .Net TCP IP Socket Programming\01_SocketServersStarter\01_SocketServersStarter\bin\Debug\01_SocketServersStarter.exe.config
+C:\Projects\C# .Net TCP IP Socket Programming\01_SocketServersStarter\01_SocketServersStarter\bin\Debug\01_SocketServersStarter.exe
+C:\Projects\C# .Net TCP IP Socket Programming\01_SocketServersStarter\01_SocketServersStarter\bin\Debug\01_SocketServersStarter.pdb
+C:\Projects\C# .Net TCP IP Socket Programming\01_SocketServersStarter\01_SocketServersStarter\obj\Debug\01_SocketServersStarter.csproj.AssemblyReference.cache
+C:\Projects\C# .Net TCP IP Socket Programming\01_SocketServersStarter\01_SocketServersStarter\obj\Debug\01_SocketServersStarter.csproj.SuggestedBindingRedirects.cache
+C:\Projects\C# .Net TCP IP Socket Programming\01_SocketServersStarter\01_SocketServersStarter\obj\Debug\01_SocketServersStarter.csproj.CoreCompileInputs.cache
+C:\Projects\C# .Net TCP IP Socket Programming\01_SocketServersStarter\01_SocketServersStarter\obj\Debug\01_SocketServersStarter.exe
+C:\Projects\C# .Net TCP IP Socket Programming\01_SocketServersStarter\01_SocketServersStarter\obj\Debug\01_SocketServersStarter.pdb
