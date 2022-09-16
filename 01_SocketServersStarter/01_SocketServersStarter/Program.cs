@@ -12,47 +12,54 @@ namespace _01_SocketServersStarter
     {
         static void Main(string[] args)
         {
-            Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-
-            IPAddress iPAddress = IPAddress.Any;
-
-            IPEndPoint iPEndPoint = new IPEndPoint(iPAddress, 33000);
-
-            socket.Bind(iPEndPoint);
-
-            socket.Listen(5);
-
-            Console.WriteLine("About to accept a connection...");
-
-            Socket client = socket.Accept();
-
-            Console.WriteLine("Client connected... " + client.ToString()
-                + " - IP End Point: " + client.RemoteEndPoint.ToString());
-
-            byte[] buffer = new byte[128];
-
-            int numOfReceivedBytes = 0;
-
-            while (true)
+            try
             {
-                numOfReceivedBytes = client.Receive(buffer);
+                Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
-                Console.WriteLine("Number of received bytes: " + numOfReceivedBytes);
+                IPAddress iPAddress = IPAddress.Any;
 
-                string receivedText = Encoding.ASCII.GetString(buffer, 0, numOfReceivedBytes);
+                IPEndPoint iPEndPoint = new IPEndPoint(iPAddress, 33000);
 
-                Console.WriteLine("Data: " + receivedText);
+                socket.Bind(iPEndPoint);
 
-                client.Send(buffer);
+                socket.Listen(5);
 
-                if (receivedText == "e")
+                Console.WriteLine("About to accept a connection...");
+
+                Socket client = socket.Accept();
+
+                Console.WriteLine("Client connected... " + client.ToString()
+                    + " - IP End Point: " + client.RemoteEndPoint.ToString());
+
+                byte[] buffer = new byte[128];
+
+                int numOfReceivedBytes = 0;
+
+                while (true)
                 {
-                    break;
+                    numOfReceivedBytes = client.Receive(buffer);
+
+                    Console.WriteLine("Number of received bytes: " + numOfReceivedBytes);
+
+                    string receivedText = Encoding.ASCII.GetString(buffer, 0, numOfReceivedBytes);
+
+                    Console.WriteLine("Data: " + receivedText);
+
+                    client.Send(buffer);
+
+                    if (receivedText == "e")
+                    {
+                        break;
+                    }
+
+                    Array.Clear(buffer, 0, buffer.Length);
+
+                    numOfReceivedBytes = 0;
                 }
-
-                Array.Clear(buffer, 0, buffer.Length);
-
-                numOfReceivedBytes = 0;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
             }
         }
     }
