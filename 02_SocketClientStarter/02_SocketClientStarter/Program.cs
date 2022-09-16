@@ -68,11 +68,19 @@ namespace _02_SocketClientStarter
             }
             finally
             {
-                client.Shutdown(SocketShutdown.Both);
-                client.Close();
-                client.Dispose();
+                if (client != null)
+                {
+                    if (client.Connected)
+                    {
+                        client.Shutdown(SocketShutdown.Both);
+                    }
+
+                    client.Close();
+                    client.Dispose();
+                }
             }
 
+            Console.WriteLine("Press any key to close...");
             Console.ReadKey();
         }
     }
