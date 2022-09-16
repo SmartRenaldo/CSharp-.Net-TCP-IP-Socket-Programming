@@ -40,12 +40,40 @@ namespace _02_SocketClientStarter
 
                 client.Connect(iPAddress, portNumber);
 
-                Console.ReadKey();
+                Console.WriteLine("Connected to the server. Type text and press enter to send it to the server. Type \"EXIT\" to close.");
+
+                string inputCommand = string.Empty;
+
+                while (true)
+                {
+                    inputCommand = Console.ReadLine();
+
+                    if(inputCommand.Equals("EXIT"))
+                    {
+                        break;
+                    }
+
+                    byte[] bufferSent = Encoding.ASCII.GetBytes(inputCommand);
+                    client.Send(bufferSent);
+
+                    byte[] bufferReceived = new byte[256];
+                    int recvNum = client.Receive(bufferReceived);
+
+                    Console.WriteLine("Data received: {0}", Encoding.ASCII.GetString(bufferSent, 0, recvNum));
+                }
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
             }
+            finally
+            {
+                client.Shutdown(SocketShutdown.Both);
+                client.Close();
+                client.Dispose();
+            }
+
+            Console.ReadKey();
         }
     }
 }
