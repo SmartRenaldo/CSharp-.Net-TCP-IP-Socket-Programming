@@ -1,0 +1,6 @@
+C:\Projects\C# .Net TCP IP Socket Programming\03_AsyncSocketServer\RenaldoSocketAsync\bin\Debug\RenaldoSocketAsync.dll
+C:\Projects\C# .Net TCP IP Socket Programming\03_AsyncSocketServer\RenaldoSocketAsync\bin\Debug\RenaldoSocketAsync.pdb
+C:\Projects\C# .Net TCP IP Socket Programming\03_AsyncSocketServer\RenaldoSocketAsync\obj\Debug\RenaldoSocketAsync.csproj.AssemblyReference.cache
+C:\Projects\C# .Net TCP IP Socket Programming\03_AsyncSocketServer\RenaldoSocketAsync\obj\Debug\RenaldoSocketAsync.csproj.CoreCompileInputs.cache
+C:\Projects\C# .Net TCP IP Socket Programming\03_AsyncSocketServer\RenaldoSocketAsync\obj\Debug\RenaldoSocketAsync.dll
+C:\Projects\C# .Net TCP IP Socket Programming\03_AsyncSocketServer\RenaldoSocketAsync\obj\Debug\RenaldoSocketAsync.pdb
