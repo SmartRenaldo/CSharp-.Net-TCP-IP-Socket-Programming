@@ -30,5 +30,10 @@ namespace _03_AsyncSocketServer
         {
             renaldoServer.StartListeningFromIncomingConnection();
         }
+
+        private void btnSendAll_Click(object sender, EventArgs e)
+        {
+            renaldoServer.SendToAll(messageBox.Text.Trim());
+        }
     }
 }

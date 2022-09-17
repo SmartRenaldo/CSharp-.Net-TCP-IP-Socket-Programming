@@ -16,6 +16,12 @@ namespace RenaldoSocketAsync
         int port;
         TcpListener listener;
         bool continuing { get; set; }
+        List<TcpClient> clients;
+
+        public RenaldoSocketServer()
+        {
+            clients = new List<TcpClient>();
+        }
 
         public async void StartListeningFromIncomingConnection(IPAddress iPAddress = null, int port = 33000)
         {
@@ -44,7 +50,9 @@ namespace RenaldoSocketAsync
                 while (continuing)
                 {
                     var returnedByAccept = await listener.AcceptTcpClientAsync();
-                    System.Diagnostics.Debug.WriteLine("Client connected successfully " + returnedByAccept.ToString());
+                    clients.Add(returnedByAccept);
+                    Debug.WriteLine(String.Format("Client connected successfully, count: {0} - {1}",
+                        clients.Count, returnedByAccept.Client.RemoteEndPoint));
                     TakeCareOfTcpClient(returnedByAccept);
                 }
             }
@@ -73,20 +81,53 @@ namespace RenaldoSocketAsync
 
                     if (num == 0)
                     {
+                        RemoveClient(paramClient);
                         System.Diagnostics.Debug.WriteLine("Socket disconnected...");
                         break;
                     }
 
                     string text = new string(buffer);
 
-                    System.Diagnostics.Debug.WriteLine("Received text: " + text);
+                    System.Diagnostics.Debug.WriteLine("Received text: " + text + " ");
 
                     Array.Clear(buffer, 0, buffer.Length);
                 }
             }
             catch (Exception e)
             {
+                RemoveClient(paramClient);
                 System.Diagnostics.Debug.WriteLine(e.ToString());
+            }
+        }
+
+        private void RemoveClient(TcpClient paramClient)
+        {
+            if(clients.Contains(paramClient))
+            {
+                clients.Remove(paramClient);
+                Debug.WriteLine(String.Format("Client removed. count: {0}", clients.Count));
+            }
+        }
+
+        public async void SendToAll(string message)
+        {
+            if (string.IsNullOrEmpty(message))
+            {
+                return;
+            }
+            
+            try
+            {
+                byte[] bufferMsg = Encoding.ASCII.GetBytes(message);
+
+                foreach(TcpClient client in clients)
+                {
+                    client.GetStream().WriteAsync(bufferMsg, 0, bufferMsg.Length);
+                }
+            }
+            catch(Exception e)
+            {
+                Debug.WriteLine(e.ToString());
             }
         }
     }
