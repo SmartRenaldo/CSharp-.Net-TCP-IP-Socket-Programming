@@ -35,5 +35,15 @@ namespace _03_AsyncSocketServer
         {
             renaldoServer.SendToAll(messageBox.Text.Trim());
         }
+
+        private void btnStopServer_Click(object sender, EventArgs e)
+        {
+            renaldoServer.StopServer();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            renaldoServer.StopServer();
+        }
     }
 }

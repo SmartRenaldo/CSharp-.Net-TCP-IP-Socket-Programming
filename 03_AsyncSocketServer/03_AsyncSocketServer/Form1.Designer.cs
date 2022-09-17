@@ -32,6 +32,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.messageBox = new System.Windows.Forms.TextBox();
             this.btnSendAll = new System.Windows.Forms.Button();
+            this.btnStopServer = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnAcceptIncomingAsync
@@ -71,14 +72,26 @@
             this.btnSendAll.UseVisualStyleBackColor = true;
             this.btnSendAll.Click += new System.EventHandler(this.btnSendAll_Click);
             // 
+            // btnStopServer
+            // 
+            this.btnStopServer.Location = new System.Drawing.Point(48, 143);
+            this.btnStopServer.Name = "btnStopServer";
+            this.btnStopServer.Size = new System.Drawing.Size(202, 23);
+            this.btnStopServer.TabIndex = 4;
+            this.btnStopServer.Text = "Stop Server";
+            this.btnStopServer.UseVisualStyleBackColor = true;
+            this.btnStopServer.Click += new System.EventHandler(this.btnStopServer_Click);
+            // 
             // Form1
             // 
             this.ClientSize = new System.Drawing.Size(578, 426);
+            this.Controls.Add(this.btnStopServer);
             this.Controls.Add(this.btnSendAll);
             this.Controls.Add(this.messageBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnAcceptIncomingAsync);
             this.Name = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -91,6 +104,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox messageBox;
         private System.Windows.Forms.Button btnSendAll;
+        private System.Windows.Forms.Button btnStopServer;
     }
 }
 

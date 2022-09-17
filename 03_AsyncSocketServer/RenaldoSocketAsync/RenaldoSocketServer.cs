@@ -88,7 +88,7 @@ namespace RenaldoSocketAsync
 
                     string text = new string(buffer);
 
-                    System.Diagnostics.Debug.WriteLine("Received text: " + text + " ");
+                    System.Diagnostics.Debug.WriteLine("Received text: " + text);
 
                     Array.Clear(buffer, 0, buffer.Length);
                 }
@@ -126,6 +126,28 @@ namespace RenaldoSocketAsync
                 }
             }
             catch(Exception e)
+            {
+                Debug.WriteLine(e.ToString());
+            }
+        }
+
+        public void StopServer()
+        {
+            try
+            {
+                if (listener != null)
+                {
+                    listener.Stop();
+                }
+
+                foreach (TcpClient client in clients)
+                {
+                    client.Close();
+                }
+
+                clients.Clear();
+            }
+            catch (Exception e)
             {
                 Debug.WriteLine(e.ToString());
             }
