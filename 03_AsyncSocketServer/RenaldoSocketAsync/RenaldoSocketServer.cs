@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -13,6 +15,7 @@ namespace RenaldoSocketAsync
         IPAddress iPAddress;
         int port;
         TcpListener listener;
+        bool continuing { get; set; }
 
         public async void StartListeningFromIncomingConnection(IPAddress iPAddress = null, int port = 33000)
         {
@@ -32,10 +35,59 @@ namespace RenaldoSocketAsync
             System.Diagnostics.Debug.WriteLine(string.Format("IP Address: {0}; Port: {1}", iPAddress.ToString(), port.ToString()));
 
             listener = new TcpListener(iPAddress, port);
-            listener.Start();
-            var returnedByAccept = await listener.AcceptTcpClientAsync();
+        
+            try
+            {
+                listener.Start();
+                continuing = true;
 
-            System.Diagnostics.Debug.WriteLine("Client connected successfully " + returnedByAccept.ToString());
+                while (continuing)
+                {
+                    var returnedByAccept = await listener.AcceptTcpClientAsync();
+                    System.Diagnostics.Debug.WriteLine("Client connected successfully " + returnedByAccept.ToString());
+                    TakeCareOfTcpClient(returnedByAccept);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.ToString());
+            }
+        }
+
+        private async void TakeCareOfTcpClient(TcpClient paramClient)
+        {
+            NetworkStream stream = null;
+            StreamReader reader = null;
+
+            try
+            {
+                stream = paramClient.GetStream();
+                reader = new StreamReader(stream);
+
+                char[] buffer = new char[64];
+
+                while(continuing)
+                {
+                    Debug.WriteLine("Ready to read...");
+                    int num = await reader.ReadAsync(buffer, 0, buffer.Length);
+
+                    if (num == 0)
+                    {
+                        System.Diagnostics.Debug.WriteLine("Socket disconnected...");
+                        break;
+                    }
+
+                    string text = new string(buffer);
+
+                    System.Diagnostics.Debug.WriteLine("Received text: " + text);
+
+                    Array.Clear(buffer, 0, buffer.Length);
+                }
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.ToString());
+            }
         }
     }
 }

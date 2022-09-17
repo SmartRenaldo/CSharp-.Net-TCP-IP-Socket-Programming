@@ -9,3 +9,6 @@ C:\Projects\C# .Net TCP IP Socket Programming\03_AsyncSocketServer\03_AsyncSocke
 C:\Projects\C# .Net TCP IP Socket Programming\03_AsyncSocketServer\03_AsyncSocketServer\obj\Debug\03_AsyncSocketServer.exe
 C:\Projects\C# .Net TCP IP Socket Programming\03_AsyncSocketServer\03_AsyncSocketServer\obj\Debug\03_AsyncSocketServer.pdb
 C:\Projects\C# .Net TCP IP Socket Programming\03_AsyncSocketServer\03_AsyncSocketServer\obj\Debug\_03_AsyncSocketServer.Form1.resources
+C:\Projects\C# .Net TCP IP Socket Programming\03_AsyncSocketServer\03_AsyncSocketServer\bin\Debug\RenaldoSocketAsync.dll
+C:\Projects\C# .Net TCP IP Socket Programming\03_AsyncSocketServer\03_AsyncSocketServer\bin\Debug\RenaldoSocketAsync.pdb
+C:\Projects\C# .Net TCP IP Socket Programming\03_AsyncSocketServer\03_AsyncSocketServer\obj\Debug\03_AsyncSocketServer.csproj.CopyComplete
