@@ -1,0 +1,11 @@
+C:\Projects\C# .Net TCP IP Socket Programming\04_AsyncSocketClient\04_AsyncSocketClient\obj\Debug\04_AsyncSocketClient.csproj.AssemblyReference.cache
+C:\Projects\C# .Net TCP IP Socket Programming\04_AsyncSocketClient\04_AsyncSocketClient\obj\Debug\04_AsyncSocketClient.csproj.SuggestedBindingRedirects.cache
+C:\Projects\C# .Net TCP IP Socket Programming\04_AsyncSocketClient\04_AsyncSocketClient\obj\Debug\04_AsyncSocketClient.csproj.CoreCompileInputs.cache
+C:\Projects\C# .Net TCP IP Socket Programming\04_AsyncSocketClient\04_AsyncSocketClient\bin\Debug\04_AsyncSocketClient.exe.config
+C:\Projects\C# .Net TCP IP Socket Programming\04_AsyncSocketClient\04_AsyncSocketClient\bin\Debug\04_AsyncSocketClient.exe
+C:\Projects\C# .Net TCP IP Socket Programming\04_AsyncSocketClient\04_AsyncSocketClient\bin\Debug\04_AsyncSocketClient.pdb
+C:\Projects\C# .Net TCP IP Socket Programming\04_AsyncSocketClient\04_AsyncSocketClient\bin\Debug\RenaldoSocketAsync.dll
+C:\Projects\C# .Net TCP IP Socket Programming\04_AsyncSocketClient\04_AsyncSocketClient\bin\Debug\RenaldoSocketAsync.pdb
+C:\Projects\C# .Net TCP IP Socket Programming\04_AsyncSocketClient\04_AsyncSocketClient\obj\Debug\04_AsyncSocketClient.csproj.CopyComplete
+C:\Projects\C# .Net TCP IP Socket Programming\04_AsyncSocketClient\04_AsyncSocketClient\obj\Debug\04_AsyncSocketClient.exe
+C:\Projects\C# .Net TCP IP Socket Programming\04_AsyncSocketClient\04_AsyncSocketClient\obj\Debug\04_AsyncSocketClient.pdb

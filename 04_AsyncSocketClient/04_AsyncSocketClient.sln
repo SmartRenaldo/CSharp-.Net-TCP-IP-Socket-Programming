@@ -5,6 +5,8 @@ VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04_AsyncSocketClient", "04_AsyncSocketClient\04_AsyncSocketClient.csproj", "{D0E3B92B-FDB2-4543-A3C7-585148FADDCD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RenaldoSocketAsync", "..\03_AsyncSocketServer\RenaldoSocketAsync\RenaldoSocketAsync.csproj", "{683304A9-55D3-4B9F-9835-9EB13ABE2C7B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{D0E3B92B-FDB2-4543-A3C7-585148FADDCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0E3B92B-FDB2-4543-A3C7-585148FADDCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0E3B92B-FDB2-4543-A3C7-585148FADDCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{683304A9-55D3-4B9F-9835-9EB13ABE2C7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{683304A9-55D3-4B9F-9835-9EB13ABE2C7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{683304A9-55D3-4B9F-9835-9EB13ABE2C7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{683304A9-55D3-4B9F-9835-9EB13ABE2C7B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

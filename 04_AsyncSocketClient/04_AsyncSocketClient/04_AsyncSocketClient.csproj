@@ -49,5 +49,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\03_AsyncSocketServer\RenaldoSocketAsync\RenaldoSocketAsync.csproj">
+      <Project>{683304a9-55d3-4b9f-9835-9eb13abe2c7b}</Project>
+      <Name>RenaldoSocketAsync</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
