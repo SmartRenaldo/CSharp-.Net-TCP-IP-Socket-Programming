@@ -20,6 +20,18 @@ namespace _04_AsyncSocketClient
             Console.WriteLine("Please supply a valid port number 0 - 65536 and press enter:");
             string strPort = Console.ReadLine();
 
+            if (strIpAddress.StartsWith("<HOST>"))
+            {
+                strIpAddress = strIpAddress.Replace("<HOST>", string.Empty);
+                strIpAddress = Convert.ToString(RenaldoSocketClient.ResolveHostNameToIpAddress(strIpAddress));
+            }
+
+            if(string.IsNullOrWhiteSpace(strIpAddress))
+            {
+                Console.WriteLine("No IP address supplied...");
+                Environment.Exit(0);
+            }
+
             if (!client.SetServerIpAddress(strIpAddress) || !client.SetPort(strPort))
             {
                 Console.WriteLine(string.Format("Wrong IP address ot port number supplied - {0} - {1} ",

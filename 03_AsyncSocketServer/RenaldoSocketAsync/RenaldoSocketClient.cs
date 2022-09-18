@@ -155,5 +155,29 @@ namespace RenaldoSocketAsync
                 }
             }
         }
+
+        public static IPAddress ResolveHostNameToIpAddress(string hostName)
+        {
+            IPAddress[] iPAddresses = null;
+
+            try
+            {
+                iPAddresses = Dns.GetHostAddresses(hostName);
+
+                foreach (IPAddress iPAddress in iPAddresses)
+                {
+                    if (iPAddress.AddressFamily == AddressFamily.InterNetwork)
+                    {
+                        return iPAddress;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+
+            return null;
+        }
     }
 }
