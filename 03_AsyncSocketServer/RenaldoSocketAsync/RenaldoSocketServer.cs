@@ -38,7 +38,7 @@ namespace RenaldoSocketAsync
             this.iPAddress = iPAddress;
             this.port = port;
 
-            System.Diagnostics.Debug.WriteLine(string.Format("IP Address: {0}; Port: {1}", iPAddress.ToString(), port.ToString()));
+            Debug.WriteLine(string.Format("IP Address: {0}; Port: {1}", iPAddress.ToString(), port.ToString()));
 
             listener = new TcpListener(iPAddress, port);
         
@@ -58,7 +58,7 @@ namespace RenaldoSocketAsync
             }
             catch (Exception e)
             {
-                System.Diagnostics.Debug.WriteLine(e.ToString());
+                Debug.WriteLine(e.ToString());
             }
         }
 
@@ -82,13 +82,13 @@ namespace RenaldoSocketAsync
                     if (num == 0)
                     {
                         RemoveClient(paramClient);
-                        System.Diagnostics.Debug.WriteLine("Socket disconnected...");
+                        Debug.WriteLine("Socket disconnected...");
                         break;
                     }
 
                     string text = new string(buffer);
 
-                    System.Diagnostics.Debug.WriteLine("Received text: " + text);
+                    Debug.WriteLine("Received text: " + text);
 
                     Array.Clear(buffer, 0, buffer.Length);
                 }
@@ -96,7 +96,7 @@ namespace RenaldoSocketAsync
             catch (Exception e)
             {
                 RemoveClient(paramClient);
-                System.Diagnostics.Debug.WriteLine(e.ToString());
+                Debug.WriteLine(e.ToString());
             }
         }
 

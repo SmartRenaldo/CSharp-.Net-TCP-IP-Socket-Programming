@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -12,13 +13,13 @@ namespace RenaldoSocketAsync
     {
         IPAddress serverIpAddress;
         int serverPort;
-        TcpClient TcpClient;
+        TcpClient tcpClient;
 
         public RenaldoSocketClient()
         {
             this.serverIpAddress = null;
             this.serverPort = -1;
-            this.TcpClient = null;
+            this.tcpClient = null;
         }
 
         public IPAddress ServerIpAddress
@@ -65,19 +66,67 @@ namespace RenaldoSocketAsync
 
         public async Task ConnectToServer()
         {
-            if(TcpClient == null)
+            if(tcpClient == null)
             {
-                TcpClient = new TcpClient();
+                tcpClient = new TcpClient();
             }
 
             try
             {
-                await TcpClient.ConnectAsync(ServerIpAddress, ServerPort);
+                await tcpClient.ConnectAsync(ServerIpAddress, ServerPort);
                 Console.WriteLine(string.Format("Connected to server IP / PORT: {0} / {1}", serverIpAddress, serverPort));
+
+                ReadDataAsync(tcpClient);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
+            }
+        }
+
+        private async Task ReadDataAsync(TcpClient tcpClient)
+        {
+            try
+            {
+                StreamReader streamReader = new StreamReader(tcpClient.GetStream());
+                char[] buffer = new char[128];
+                int readByteCount;
+
+                while(true)
+                {
+                    readByteCount = await streamReader.ReadAsync(buffer, 0, buffer.Length);
+
+                    if (readByteCount <= 0)
+                    {
+                        Console.WriteLine("Disconnected from server...");
+                        tcpClient.Close();
+                        break;
+                    }
+
+                    Console.WriteLine(String.Format("Received bytes: {0}, message: {1}", readByteCount, new string(buffer)));
+
+                    Array.Clear(buffer, 0, buffer.Length);
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                throw;
+            }
+        }
+
+        public async Task SendToServer(string userInput)
+        {
+            if (tcpClient != null)
+            {
+                if (tcpClient.Connected)
+                {
+                    StreamWriter streamWriter = new StreamWriter(tcpClient.GetStream());
+                    streamWriter.AutoFlush = true;
+
+                    await streamWriter.WriteAsync(userInput);
+                    Console.WriteLine("Data \"{0}\" sent", userInput);
+                }
             }
         }
     }
