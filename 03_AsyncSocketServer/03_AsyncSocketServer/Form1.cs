@@ -19,6 +19,8 @@ namespace _03_AsyncSocketServer
         {
             InitializeComponent();
             renaldoServer = new RenaldoSocketServer();
+            renaldoServer.RaiseClientConnectedEvent += HandleClientConnected;
+            renaldoServer.RaiseTextReceivedEvent += HandleTextReceived;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -44,6 +46,18 @@ namespace _03_AsyncSocketServer
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             renaldoServer.StopServer();
+        }
+
+        void HandleClientConnected(object sender, ClientConnectedEventArgs ccea)
+        {
+            txtCounsel.AppendText(String.Format("{0} - New client connected: {1}{2}",
+                DateTime.Now, ccea.NewClient, Environment.NewLine));
+        }
+
+        void HandleTextReceived(object sender, TextReceivedEventArgs trea)
+        {
+            txtCounsel.AppendText(String.Format("{0} - Received message from {1}: {2}{3}",
+                DateTime.Now, trea.Client, trea.TextReceived, Environment.NewLine));
         }
     }
 }

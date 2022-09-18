@@ -31,18 +31,22 @@ namespace _04_AsyncSocketClient
             client.ConnectToServer();
 
             string userInput = null;
-            bool flag;
+            bool isContinuing;
 
             do
             {
                 userInput = Console.ReadLine();
-                flag = !userInput.Trim().ToUpper().Equals("EXIT");
+                isContinuing = !userInput.Trim().ToUpper().Equals("EXIT");
 
-                if (flag)
+                if (isContinuing)
                 {
                     client.SendToServer(userInput);
                 }
-            } while (flag);
+                else
+                {
+                    client.CloseAndDisconnect();
+                }
+            } while (isContinuing);
         }
     }
 }

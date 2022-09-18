@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomEventArgs.cs" />
     <Compile Include="RenaldoSocketClient.cs" />
     <Compile Include="RenaldoSocketServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

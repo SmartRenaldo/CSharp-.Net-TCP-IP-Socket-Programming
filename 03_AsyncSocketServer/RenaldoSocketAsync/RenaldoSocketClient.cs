@@ -129,5 +129,16 @@ namespace RenaldoSocketAsync
                 }
             }
         }
+
+        public void CloseAndDisconnect()
+        {
+            if (tcpClient != null)
+            {
+                if (tcpClient.Connected)
+                {
+                    tcpClient.Close();
+                }
+            }
+        }
     }
 }

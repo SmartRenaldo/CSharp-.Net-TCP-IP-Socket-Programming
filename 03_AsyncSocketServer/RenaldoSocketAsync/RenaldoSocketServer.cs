@@ -18,9 +18,32 @@ namespace RenaldoSocketAsync
         bool continuing { get; set; }
         List<TcpClient> clients;
 
+        public EventHandler<ClientConnectedEventArgs> RaiseClientConnectedEvent;
+        public EventHandler<TextReceivedEventArgs> RaiseTextReceivedEvent;
+
         public RenaldoSocketServer()
         {
             clients = new List<TcpClient>();
+        }
+
+        protected virtual void OnRaiseClientConnectedEvent(ClientConnectedEventArgs e)
+        {
+            EventHandler<ClientConnectedEventArgs> handler = RaiseClientConnectedEvent;
+
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
+        protected virtual void OnRaiseTextReceivedEvent(TextReceivedEventArgs e)
+        {
+            EventHandler<TextReceivedEventArgs> handler = RaiseTextReceivedEvent;
+
+            if (handler != null)
+            {
+                handler(this, e);
+            }
         }
 
         public async void StartListeningFromIncomingConnection(IPAddress iPAddress = null, int port = 33000)
@@ -54,6 +77,10 @@ namespace RenaldoSocketAsync
                     Debug.WriteLine(String.Format("Client connected successfully, count: {0} - {1}",
                         clients.Count, returnedByAccept.Client.RemoteEndPoint));
                     TakeCareOfTcpClient(returnedByAccept);
+
+                    ClientConnectedEventArgs eaClientConnected =
+                        new ClientConnectedEventArgs(returnedByAccept.Client.RemoteEndPoint.ToString());
+                    OnRaiseClientConnectedEvent(eaClientConnected);
                 }
             }
             catch (Exception e)
@@ -89,6 +116,8 @@ namespace RenaldoSocketAsync
                     string text = new string(buffer);
 
                     Debug.WriteLine("Received text: " + text);
+
+                    OnRaiseTextReceivedEvent(new TextReceivedEventArgs(paramClient.Client.RemoteEndPoint.ToString(), text));
 
                     Array.Clear(buffer, 0, buffer.Length);
                 }
