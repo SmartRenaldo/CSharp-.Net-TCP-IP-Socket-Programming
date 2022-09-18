@@ -12,6 +12,7 @@ namespace _04_AsyncSocketClient
         static void Main(string[] args)
         {
             RenaldoSocketClient client = new RenaldoSocketClient();
+            client.RaiseTextReceivedEvent += HandleTextReceived;
             Console.WriteLine("Please type a valid server IP address and press enter:");
 
             string strIpAddress = Console.ReadLine();
@@ -47,6 +48,11 @@ namespace _04_AsyncSocketClient
                     client.CloseAndDisconnect();
                 }
             } while (isContinuing);
+        }
+
+        private static void HandleTextReceived(object sender, TextReceivedEventArgs trea)
+        {
+            Console.WriteLine(String.Format("{0} - Received: {1}{2}", DateTime.Now, trea.TextReceived, Environment.NewLine));
         }
     }
 }

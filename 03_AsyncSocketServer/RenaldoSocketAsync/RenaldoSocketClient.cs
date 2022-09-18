@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace RenaldoSocketAsync
 {
@@ -14,6 +15,8 @@ namespace RenaldoSocketAsync
         IPAddress serverIpAddress;
         int serverPort;
         TcpClient tcpClient;
+
+        public EventHandler<TextReceivedEventArgs> RaiseTextReceivedEvent;
 
         public RenaldoSocketClient()
         {
@@ -84,6 +87,16 @@ namespace RenaldoSocketAsync
             }
         }
 
+        protected virtual void OnRaiseTextReceivedEvent(TextReceivedEventArgs trea)
+        {
+            EventHandler<TextReceivedEventArgs> handler = RaiseTextReceivedEvent;
+
+            if (handler != null)
+            {
+                handler(this, trea);
+            }
+        }
+
         private async Task ReadDataAsync(TcpClient tcpClient)
         {
             try
@@ -104,6 +117,8 @@ namespace RenaldoSocketAsync
                     }
 
                     Console.WriteLine(String.Format("Received bytes: {0}, message: {1}", readByteCount, new string(buffer)));
+
+                    OnRaiseTextReceivedEvent(new TextReceivedEventArgs(tcpClient.Client.RemoteEndPoint.ToString(), new string(buffer)));
 
                     Array.Clear(buffer, 0, buffer.Length);
                 }
